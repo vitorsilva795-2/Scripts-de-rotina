@@ -1,0 +1,38 @@
+#!/bin/bash
+
+#LIMPEZA DO MAILLOG
+CLEAN_MAIL_LOG="/var/log/maillog"
+EXCLUDE_MAIL_LOG="/var/log/maillog-*"
+
+#LIMPEZA DO MAILREPORT
+EXCLUDE_MAIL_REPORT="/var/log/mailreport.log-*"
+CLEAN_MAIL_REPORT="/var/log/mailreport.log"
+
+#LIMPEZA DO MESSAGES
+CLEAN_MESSAGES="/var/log/messages"
+REMOVE_MESSAGES="/var/log/messages-*"
+
+#CRIAÇÃO DO LOG DE LIMPEZA
+CLEAN_LOG="/var/log/limpeza.txt"
+
+#CRIAÇÃO DE LOG DE EXCLUSÃO
+REMOVE_LOGS="/var/log/excluded.txt"
+
+#LIMPEZA DOS LOGS
+if
+echo > $CLEAN_MAIL_LOG
+echo > $CLEAN_MAIL_REPORT
+echo > $CLEAN_MESSAGES
+then
+        echo "$(date): a limpeza foi concluida com sucesso" > $CLEAN_LOG
+fi
+
+#EXCLUSÃO DE LOGS
+if
+rm -Rf $EXCLUDE_MAIL_LOG
+rm -Rf $EXCLUDE_MAIL_REPORT
+rm -Rf $REMOVE_MESSAGES
+then
+        echo "$(date): a exclusão dos logs rotativos foram feitos com sucesso" > $REMOVE_LOGS
+fi
+
