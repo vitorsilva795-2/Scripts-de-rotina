@@ -1,0 +1,18 @@
+#!/bin/bash
+
+#Pasta dos E-mails
+Maildir="/home/path-of-mails/Maildir/new"
+
+Data=$(date)
+
+# Procura e remove e-mails com mais de 60 dias
+
+if
+find $Maildir -mtime +60 -exec rm -rf {} \;
+
+then
+echo "$Data - Emails antigos limpos com sucesso!" > /var/log/limpeza_emails.log
+
+else
+
+echo "$Data - Não foram encontrados e-mails antigos!" > /var/log/limpeza_emails.log
