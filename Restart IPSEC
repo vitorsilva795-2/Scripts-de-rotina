@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# Endereço IP para ping
+TARGET="192.168.X.X"
+INTERFACE="10.10.X.X"
+
+# Ping 3x. Se falhar, reinicie o IPSEC.
+while true; do
+   if ! ping -I $INTERFACE -c3 $TARGET &> /dev/null
+
+    then
+       echo "$(date): Ping falhou para $TARGET na interface $INTERFACE. Reiniciando IPSEC." >> /var/log/ipsec_restart.txt
+       ipsec restart
+   fi
+
+    sleep 5
+done
